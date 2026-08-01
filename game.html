@@ -9,6 +9,8 @@
 
   <body class="game-page">
     <header class="game-header">ROCK, PAPER, SCISSORS !</header>
+    <p class="js-result" style="color: white">RESULT</p>
+    <p class="js-scoreCard" style="color: white"></p>
     <main class="game-main">
       <div class="game-controls">
         <button class="choice-button rock-button" onclick="playGame('rock')">
@@ -37,134 +39,39 @@
       };
 
       function playGame(playerChoice) {
-        let move = computerMove();
+        const move = computerMove();
+        let result;
 
-        if (playerChoice === "rock") {
-          if (move === "rock") {
-            score.ties++;
-            alert(
-              "computer picked " +
-                move +
-                ", DRAW!" +
-                "\n Wins: " +
-                score.wins +
-                " Losses: " +
-                score.losses +
-                " Ties: " +
-                score.ties,
-            );
-          } else if (move === "paper") {
-            score.losses++;
-            alert(
-              "computer picked " +
-                move +
-                ", you LOSE!" +
-                "\n Wins: " +
-                score.wins +
-                " Losses: " +
-                score.losses +
-                " Ties: " +
-                score.ties,
-            );
-          } else if (move === "scissor") {
-            score.wins++;
-            alert(
-              "computer picked " +
-                move +
-                ", you WIN!" +
-                "\n Wins: " +
-                score.wins +
-                " Losses: " +
-                score.losses +
-                " Ties: " +
-                score.ties,
-            );
-          }
+        if (playerChoice === move) {
+          result = "DRAW!";
+          score.ties++;
+        } else if (
+          (playerChoice === "rock" && move === "scissor") ||
+          (playerChoice === "paper" && move === "rock") ||
+          (playerChoice === "scissor" && move === "paper")
+        ) {
+          result = "you WIN!";
+          score.wins++;
+        } else {
+          result = "you LOSE!";
+          score.losses++;
         }
-        if (playerChoice === "paper") {
-          if (move === "rock") {
-            score.wins++;
-            alert(
-              "computer picked " +
-                move +
-                ", you WIN!" +
-                "\n Wins: " +
-                score.wins +
-                " Losses: " +
-                score.losses +
-                " Ties: " +
-                score.ties,
-            );
-          } else if (move === "paper") {
-            score.ties++;
-            alert(
-              "computer picked " +
-                move +
-                ", DRAW!" +
-                "\n Wins: " +
-                score.wins +
-                " Losses: " +
-                score.losses +
-                " Ties: " +
-                score.ties,
-            );
-          } else if (move === "scissor") {
-            score.losses++;
-            alert(
-              "computer picked " +
-                move +
-                ", you LOSE!" +
-                "\n Wins: " +
-                score.wins +
-                " Losses: " +
-                score.losses +
-                " Ties: " +
-                score.ties,
-            );
-          }
-        }
-        if (playerChoice === "scissor") {
-          if (move === "rock") {
-            score.losses++;
-            alert(
-              "computer picked " +
-                move +
-                ", you LOSE! \n Wins: " +
-                score.wins +
-                " Losses: " +
-                score.losses +
-                " Ties: " +
-                score.ties,
-            );
-          } else if (move === "paper") {
-            score.wins++;
-            alert(
-              "computer picked " +
-                move +
-                ", you WIN!" +
-                "\n Wins: " +
-                score.wins +
-                " Losses: " +
-                score.losses +
-                " Ties: " +
-                score.ties,
-            );
-          } else if (move === "scissor") {
-            score.ties++;
-            alert(
-              "computer picked " +
-                move +
-                ", DRAW!" +
-                "\n Wins: " +
-                score.wins +
-                " Losses: " +
-                score.losses +
-                " Ties: " +
-                score.ties,
-            );
-          }
-        }
+
         localStorage.setItem("score", JSON.stringify(score));
+        updateScoreCard();
+
+        document.querySelector(".js-result").innerHTML =
+          "Computer picked " + move.toUpperCase() + ", " + result;
+      }
+
+      function updateScoreCard() {
+        document.querySelector(".js-scoreCard").innerHTML =
+          "Wins: " +
+          score.wins +
+          " Losses: " +
+          score.losses +
+          " Ties: " +
+          score.ties;
       }
 
       function resetScore() {
@@ -172,15 +79,7 @@
         score.losses = 0;
         score.ties = 0;
         localStorage.removeItem("score");
-        alert(
-          "Score has been reset!" +
-            "\n Wins: " +
-            score.wins +
-            " Losses: " +
-            score.losses +
-            " Ties: " +
-            score.ties,
-        );
+        updateScoreCard();
       }
 
       function computerMove() {
