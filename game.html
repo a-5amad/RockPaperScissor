@@ -13,20 +13,25 @@
     <p class="js-scoreCard" style="color: white"></p>
     <main class="game-main">
       <div class="game-controls">
-        <button class="choice-button rock-button" onclick="playGame('rock')">
-          ROCK
+        <button class="choice-button" type="button" onclick="playGame('rock')">
+          <img src="images/hand-back-fist-regular-full.svg" alt="ROCK" />
         </button>
-        <button class="choice-button paper-button" onclick="playGame('paper')">
-          PAPER
+        <button class="choice-button" type="button" onclick="playGame('paper')">
+          <img src="images/hand-regular-full.svg" alt="PAPER" />
         </button>
         <button
-          class="choice-button scissor-button"
+          class="choice-button"
+          type="button"
           onclick="playGame('scissor')"
         >
-          SCISSOR
+          <img src="images/hand-scissors-regular-full.svg" alt="SCISSORS" />
         </button>
       </div>
-      <button class="choice-button reset-button" onclick="resetScore()">
+      <button
+        class="choice-button reset-button"
+        type="button"
+        onclick="resetScore()"
+      >
         RESET
       </button>
     </main>
@@ -50,18 +55,21 @@
           (playerChoice === "paper" && move === "rock") ||
           (playerChoice === "scissor" && move === "paper")
         ) {
-          result = "you WIN!";
+          result = "You WIN!";
           score.wins++;
         } else {
-          result = "you LOSE!";
+          result = "You LOSE!";
           score.losses++;
         }
 
         localStorage.setItem("score", JSON.stringify(score));
         updateScoreCard();
 
-        document.querySelector(".js-result").innerHTML =
-          "Computer picked " + move.toUpperCase() + ", " + result;
+        document.querySelector(".js-result").innerHTML = `
+          <span class="result-move">Computer: <img src="${getMoveImage(move)}" alt="${move}" /></span>
+          <span class="result-move">You: <img src="${getMoveImage(playerChoice)}" alt="${playerChoice}" /></span>
+          <strong class="result-message">${result}</strong>
+        `;
       }
 
       function updateScoreCard() {
@@ -91,6 +99,16 @@
         } else computerMove = "scissor";
 
         return computerMove;
+      }
+
+      function getMoveImage(move) {
+        const moveImages = {
+          rock: "images/hand-back-fist-regular-full.svg",
+          paper: "images/hand-regular-full.svg",
+          scissor: "images/hand-scissors-regular-full.svg",
+        };
+
+        return moveImages[move];
       }
     </script>
   </body>
