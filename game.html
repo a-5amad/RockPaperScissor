@@ -27,13 +27,22 @@
           <img src="images/hand-scissors-regular-full.svg" alt="SCISSORS" />
         </button>
       </div>
-      <button
-        class="choice-button reset-button"
-        type="button"
-        onclick="resetScore()"
-      >
-        RESET
-      </button>
+      <div class="action-buttons">
+        <button
+          class="choice-button reset-button"
+          type="button"
+          onclick="resetScore()"
+        >
+          RESET
+        </button>
+        <button
+          class="choice-button reset-button"
+          type="button"
+          onclick="autoPlay()"
+        >
+          AUTOPLAY
+        </button>
+      </div>
     </main>
 
     <script>
@@ -66,10 +75,10 @@
         updateScoreCard();
 
         document.querySelector(".js-result").innerHTML = `
-          <span class="result-move">Computer: <img src="${getMoveImage(move)}" alt="${move}" /></span>
-          <span class="result-move">You: <img src="${getMoveImage(playerChoice)}" alt="${playerChoice}" /></span>
-          <strong class="result-message">${result}</strong>
-        `;
+                  <span class="result-move">Computer: <img src="${getMoveImage(move)}" alt="${move}" /></span>
+                  <span class ="result-move">You: <img src="${getMoveImage(playerChoice)}" alt="${playerChoice}" /></span>
+                  <strong class="result-message">${result}</strong>
+                `;
       }
 
       function updateScoreCard() {
@@ -109,6 +118,21 @@
         };
 
         return moveImages[move];
+      }
+
+      let isautoplaying = false;
+      let intervalID;
+
+      function autoPlay() {
+        if (!isautoplaying) {
+          isautoplaying = true;
+          intervalID = setInterval(function () {
+            playGame(computerMove());
+          }, 2000);
+        } else {
+          clearInterval(intervalID);
+          isautoplaying = false;
+        }
       }
     </script>
   </body>

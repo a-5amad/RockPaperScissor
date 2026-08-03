@@ -75,12 +75,18 @@ body {
 }
 
 .reset-button {
-  flex: 0 0 100px;
-  width: 250px;
+  flex: 0 0 300px;
+  width: 300px;
   max-width: 250px;
   border: 3px solid rgb(29, 207, 243);
   background-color: rgba(2, 32, 46, 0.68);
-  margin-top: 40px;
+  margin-top: 30px;
+  font-size: clamp(16px, 1.5vw, 25px);
+}
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
 }
 
 @media (max-width: 480px) {
@@ -101,8 +107,9 @@ body {
   }
 
   .reset-button {
-    flex-basis: 50px;
-    margin-top: 28px;
+    flex-basis: 150px;
+    margin-top: 15px;
+    flex-wrap: wrap;
   }
 }
 .js-result,
@@ -141,7 +148,7 @@ body {
 @media (min-width: 1280px) {
   .game-main {
     width: min(100% - 96px, 1280px);
-    padding-top: 50px;
+    padding-top: 20px;
   }
 
   .game-controls {
@@ -150,8 +157,8 @@ body {
   }
 
   .choice-button {
-    flex-basis: 100px;
-    max-width: 250px;
+    flex-basis: 300px;
+    max-width: 310px;
     min-height: 64px;
   }
 }
