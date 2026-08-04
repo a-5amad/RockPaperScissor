@@ -13,32 +13,26 @@
     <p class="js-scoreCard" style="color: white"></p>
     <main class="game-main">
       <div class="game-controls">
-        <button class="choice-button" type="button" onclick="playGame('rock')">
+        <button class="choice-button js-rock" type="button">
           <img src="images/hand-back-fist-regular-full.svg" alt="ROCK" />
         </button>
-        <button class="choice-button" type="button" onclick="playGame('paper')">
+        <button class="choice-button js-paper" type="button">
           <img src="images/hand-regular-full.svg" alt="PAPER" />
         </button>
-        <button
-          class="choice-button"
-          type="button"
-          onclick="playGame('scissor')"
-        >
+        <button class="choice-button js-scissor" type="button">
           <img src="images/hand-scissors-regular-full.svg" alt="SCISSORS" />
         </button>
       </div>
       <div class="action-buttons">
         <button
-          class="choice-button reset-button"
+          class="choice-button reset-button js-reset-button"
           type="button"
-          onclick="resetScore()"
         >
           RESET
         </button>
         <button
-          class="choice-button reset-button"
+          class="choice-button reset-button js-autoplay-button"
           type="button"
-          onclick="autoPlay()"
         >
           AUTOPLAY
         </button>
@@ -134,6 +128,24 @@
           isautoplaying = false;
         }
       }
+
+      document
+        .querySelector(".js-reset-button")
+        .addEventListener("click", resetScore);
+      document
+        .querySelector(".js-autoplay-button")
+        .addEventListener("click", autoPlay);
+      document.querySelector(".js-rock").addEventListener("click", () => {
+        playGame("rock");
+      });
+
+      document.querySelector(".js-paper").addEventListener("click", () => {
+        playGame("paper");
+      });
+
+      document.querySelector(".js-scissor").addEventListener("click", () => {
+        playGame("scissor");
+      });
     </script>
   </body>
 </html>
