@@ -46,7 +46,7 @@ The score is stored only in memory, so refreshing or closing the page starts a n
 - JavaScript (vanilla)
 
 ## Screenshots
-<img width="800px" height="800px" alt="image" src="https://github.com/user-attachments/assets/da097ce9-be89-49a8-ab0f-208e86175d06" />
+<img width="800" height="800" alt="image" src="https://github.com/user-attachments/assets/3d4fab0f-c25b-4aab-8f28-1fff200a1c50" />
 
 
 ## Author
