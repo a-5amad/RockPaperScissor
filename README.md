@@ -20,6 +20,7 @@ No installation or dependencies are required.
 
 Alternatively, serve the project with a local development server and open `game.html` from it.
 
+
 ## How to play
 
 - Rock beats Scissor.
@@ -33,8 +34,9 @@ The score is stored only in memory, so refreshing or closing the page starts a n
 
 ```text
 .
-|-- game.html   # Page markup and game logic
+|-- game.html   # Page markup 
 |-- style.css   # Game styling
+|-- scripts.js  # Game logic
 ```
 
 ## Technologies
@@ -47,6 +49,9 @@ The score is stored only in memory, so refreshing or closing the page starts a n
 <img width="800px" height="800px" alt="image" src="https://github.com/user-attachments/assets/da097ce9-be89-49a8-ab0f-208e86175d06" />
 
 
+## Author
 
+**Abdul Samad**
 
-This project does not currently include a license.
+- GitHub: https://github.com/a-5amad
+- LinkedIn: https://www.linkedin.com/in/ab-samad-dev/
